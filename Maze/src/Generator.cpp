@@ -1,4 +1,4 @@
-#include "../header/MazeUnionFind.h"
+#include "../header/Generator.h"
 #include <algorithm>
 #include <random>
 #include <vector>
@@ -38,11 +38,11 @@ namespace Maze
         this->size = size;
     }
 
-    MazeGenerator::MazeGenerator(unsigned int sizeX, unsigned int sizeY, int seed) : sizeX(sizeX), sizeY(sizeY), seed(seed)
+    Geneator::Geneator(unsigned int sizeX, unsigned int sizeY, int seed) : sizeX(sizeX), sizeY(sizeY), seed(seed)
     {
     }
 
-    std::vector<Tree> MazeGenerator::Generate()
+    std::vector<Tree> Geneator::Generate()
     {
         InitTree();
 
@@ -62,8 +62,40 @@ namespace Maze
 
         return res;
     };
-    
-    bool MazeGenerator::Unite(Node* id1, Node* id2)
+
+
+    void Geneator::InitTree()
+    {
+        // 1. Create nodes
+        nodes.clear();
+        for (int y = 0; y < sizeY; y++)
+        {
+            for (int x = 0; x < sizeX; x++)
+            {
+                int id = y * (int)sizeX + x;
+                nodes.emplace(id, id);
+            }
+        }
+        // 2. Create trees
+        trees.clear();
+        for (int height = 0; height < sizeY; height++)
+        {
+            for (int width = 0; width < sizeX; width++)
+            {
+                int self = height * (int)sizeX + width;
+                if (width != sizeX - 1)
+                {
+                    trees.emplace_back(Tree{.from = &nodes[self], .to = &nodes[self + 1]});
+                }
+                if (height != sizeY - 1)
+                {
+                    trees.emplace_back(Tree{.from = &nodes[self], .to = &nodes[self + (int)sizeX]});
+                }
+            }
+        }
+    }
+
+    bool Geneator::Unite(Node* id1, Node* id2)
     {
         auto root1 = id1->GetRoot();
         auto root2 = id2->GetRoot();

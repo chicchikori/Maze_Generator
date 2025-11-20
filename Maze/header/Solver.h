@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "MazeUnionFind.h"
+#include "Generator.h"
 #ifdef _WIN32
 #define UNIONFIND_API __declspec(dllexport)
 #else

@@ -1,4 +1,4 @@
-#include "../header/MazeSolver.h"
+#include "../header/Solver.h"
 #include <stack>
 namespace Maze
 {
@@ -56,34 +56,4 @@ namespace Maze
         return path;
     }
 
-    void MazeGenerator::InitTree()
-    {
-        // 1. Create nodes
-        nodes.clear();
-        for (int y = 0; y < sizeY; y++)
-        {
-            for (int x = 0; x < sizeX; x++)
-            {
-                int id = y * (int)sizeX + x;
-                nodes.emplace(id, id);
-            }
-        }
-        // 2. Create trees
-        trees.clear();
-        for (int height = 0; height < sizeY; height++)
-        {
-            for (int width = 0; width < sizeX; width++)
-            {
-                int self = height * (int)sizeX + width;
-                if (width != sizeX - 1)
-                {
-                    trees.emplace_back(Tree{.from = &nodes[self], .to = &nodes[self + 1]});
-                }
-                if (height != sizeY - 1)
-                {
-                    trees.emplace_back(Tree{.from = &nodes[self], .to = &nodes[self + (int)sizeX]});
-                }
-            }
-        }
-    }
 } // namespace Maze

@@ -35,10 +35,10 @@ namespace Maze
         Node* to;
     };
 
-    class UNIONFIND_API MazeGenerator
+    class UNIONFIND_API Geneator
     {
     public:
-        MazeGenerator(unsigned int sizeX = 10, unsigned int sizeY = 10, int seed = 0);
+        Geneator(unsigned int sizeX = 10, unsigned int sizeY = 10, int seed = 0);
         std::vector<Tree> Generate();
 
     private:

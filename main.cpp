@@ -1,12 +1,13 @@
 #include <chrono>
 #include <iostream>
-#include "MazeSolver.h"
-#include "MazeUnionFind.h"
+#include "Generator.h"
+#include "Solver.h"
+
 
 
 int main()
 {
-    auto uf = Maze::MazeGenerator(1000, 1000, 8);
+    auto uf = Maze::Geneator(1000, 1000, 8);
     auto startFind = std::chrono::high_resolution_clock::now();
     auto res = uf.Generate();
     auto endFind = std::chrono::high_resolution_clock::now();

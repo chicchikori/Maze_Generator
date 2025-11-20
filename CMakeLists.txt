@@ -6,7 +6,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(unionFindTest CXX)
 
-add_subdirectory(UnionFind)
+add_subdirectory(Maze)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
