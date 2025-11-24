@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+project(UnionFind)
 
-project(unionFindTest CXX)
+file(GLOB_RECURSE cppfiles ${CMAKE_CURRENT_SOURCE_DIR}/maze/src/*.cpp )
 
-add_subdirectory(Maze)
+set(DLL_NAME UnionFind)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_library(${DLL_NAME} STATIC ${cppfiles})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE UnionFind)
+target_include_directories(${DLL_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/maze/header)
+
+target_compile_features(${DLL_NAME} PRIVATE cxx_std_20)
+
