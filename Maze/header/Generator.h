@@ -1,23 +1,19 @@
 #pragma once
-#ifdef _WIN32
-#define UNIONFIND_API __declspec(dllexport)
-#else
-#define UNIONFIND_API
-#endif
 #include <unordered_map>
 #include <vector>
 
 namespace Maze
 {
-    struct UNIONFIND_API Node
+    class Node
     {
-        Node(int id = -1);
+    public:
+        Node(int pos = -1);
 
         void SetRoot(Node* nodePtr);
 
         [[nodiscard]] Node* GetRoot();
 
-        [[nodiscard]] int Id() const;
+        [[nodiscard]] int Pos() const;
 
         void SetSize(int size);
 
@@ -25,20 +21,20 @@ namespace Maze
 
     private:
         Node* root{this};
-        const int id;
+        const int pos;
         int size{-1};
     };
 
-    struct UNIONFIND_API Tree
+    struct Tree
     {
         Node* from;
         Node* to;
     };
 
-    class UNIONFIND_API Geneator
+    class Generator
     {
     public:
-        Geneator(unsigned int sizeX = 10, unsigned int sizeY = 10, int seed = 0);
+        Generator(unsigned int sizeX = 10, unsigned int sizeY = 10, int seed = 0);
         std::vector<Tree> Generate();
 
     private:
@@ -54,4 +50,4 @@ namespace Maze
         const int seed;
     };
 
-} // namespace UnionFind
+} // namespace Maze

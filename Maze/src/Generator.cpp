@@ -5,7 +5,7 @@
 
 namespace Maze
 {
-    Node::Node(int id) : id(id)
+    Node::Node(int pos) : pos(pos)
     {
     }
 
@@ -23,9 +23,9 @@ namespace Maze
         return root = root->GetRoot();
     };
 
-    [[nodiscard]] int Node::Id() const
+    [[nodiscard]] int Node::Pos() const
     {
-        return id;
+        return pos;
     };
 
     [[nodiscard]] int Node::GetSize() const
@@ -38,11 +38,11 @@ namespace Maze
         this->size = size;
     }
 
-    Geneator::Geneator(unsigned int sizeX, unsigned int sizeY, int seed) : sizeX(sizeX), sizeY(sizeY), seed(seed)
+    Generator::Generator(unsigned int sizeX, unsigned int sizeY, int seed) : sizeX(sizeX), sizeY(sizeY), seed(seed)
     {
     }
 
-    std::vector<Tree> Geneator::Generate()
+    std::vector<Tree> Generator::Generate()
     {
         InitTree();
 
@@ -64,7 +64,7 @@ namespace Maze
     };
 
 
-    void Geneator::InitTree()
+    void Generator::InitTree()
     {
         // 1. Create nodes
         nodes.clear();
@@ -95,7 +95,7 @@ namespace Maze
         }
     }
 
-    bool Geneator::Unite(Node* id1, Node* id2)
+    bool Generator::Unite(Node* id1, Node* id2)
     {
         auto root1 = id1->GetRoot();
         auto root2 = id2->GetRoot();
@@ -111,4 +111,4 @@ namespace Maze
         root2->SetRoot(root1);
         return true;
     }
-} // namespace UnionFind
+} // namespace Maze

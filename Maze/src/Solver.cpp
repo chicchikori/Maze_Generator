@@ -1,26 +1,34 @@
 #include "../header/Solver.h"
+#include <algorithm>
+
 #include <stack>
+#include <vector>
 namespace Maze
 {
 
-    std::vector<int> MazeSolver::FindAnswer(const std::vector<Tree>& trees, unsigned int sizeX, unsigned int sizeY)
+    std::vector<int> MazeSolver::FindAnswer(std::vector<Tree>& trees)
     {
-        const auto num = sizeX * sizeY;
-        const int goal = (int)num - 1;
+        const int num =
+            trees.size() * 2; // NOLINT(cppcoreguidelines-narrowing-conversions,bugprone-narrowing-conversions)
         const int start = 0;
 
-        std::vector<std::vector<int>> graph(num); // NOLINT(bugprone-implicit-widening-of-multiplication-result)
+        int goal = start;
 
-        // Create graph
+        std::vector<std::vector<int>> graph(num);
+        // Create trees
         for (const auto& tree : trees)
         {
-            int a = tree.from->Id();
-            int b = tree.to->Id();
+            const int a = tree.from->Pos();
+            const int b = tree.to->Pos();
+
             graph[a].push_back(b);
             graph[b].push_back(a);
+
+            goal = std::max({a, b, goal});
         }
-        std::vector<int> parent(num, -1); // NOLINT(bugprone-implicit-widening-of-multiplication-result)
-        std::vector<bool> visited(num, false); // NOLINT(bugprone-implicit-widening-of-multiplication-result)
+
+        std::vector<int> parent(num, -1);
+        std::vector<bool> visited(num, false);
         std::stack<int> stack;
 
         stack.push(start);
@@ -35,7 +43,7 @@ namespace Maze
             {
                 break;
             }
-            for (int nxt : graph[cur])
+            for (const int& nxt : graph[cur])
             {
                 if (!visited[nxt])
                 {
