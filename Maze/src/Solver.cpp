@@ -6,7 +6,7 @@
 namespace Maze
 {
 
-    std::vector<int> MazeSolver::FindAnswer(std::vector<Tree>& trees)
+    std::vector<int> Solver::FindAnswer(std::vector<Tree>& trees)
     {
         const int num =
             trees.size() * 2; // NOLINT(cppcoreguidelines-narrowing-conversions,bugprone-narrowing-conversions)

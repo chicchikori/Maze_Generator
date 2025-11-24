@@ -4,7 +4,7 @@
 namespace Maze
 {
 
-    class MazeSolver
+    class Solver
     {
     public:
         static std::vector<int> FindAnswer(std::vector<Tree>& trees);
