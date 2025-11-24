@@ -1,6 +1,7 @@
 #include "../header/Solver.h"
 #include <algorithm>
 
+#include <iostream>
 #include <stack>
 #include <vector>
 namespace Maze
@@ -26,6 +27,8 @@ namespace Maze
 
             goal = std::max({a, b, goal});
         }
+
+        std::cout << goal << ":" << graph.size() << "\n";
 
         std::vector<int> parent(num, -1);
         std::vector<bool> visited(num, false);
