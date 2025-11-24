@@ -28,7 +28,7 @@ namespace Maze
             goal = std::max({a, b, goal});
         }
 
-        std::cout << goal << ":" << graph.size() << "\n";
+        std::cout << goal << ":" << graph.size()/2 << "\n";
 
         std::vector<int> parent(num, -1);
         std::vector<bool> visited(num, false);
