@@ -13,7 +13,6 @@ namespace Maze
             trees.size() * 2; // NOLINT(cppcoreguidelines-narrowing-conversions,bugprone-narrowing-conversions)
         const int start = 0;
 
-        int goal = start;
 
         std::vector<std::vector<int>> graph(num);
         // Create trees
@@ -24,11 +23,8 @@ namespace Maze
 
             graph[a].push_back(b);
             graph[b].push_back(a);
-
-            goal = std::max({a, b, goal});
         }
-
-        std::cout << goal << ":" << graph.size()/2 << "\n";
+        int goal = (int)(graph.size() / 2);
 
         std::vector<int> parent(num, -1);
         std::vector<bool> visited(num, false);
