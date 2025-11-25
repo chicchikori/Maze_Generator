@@ -4,23 +4,23 @@
 namespace Maze
 {
 
-    std::vector<int> Solver::FindAnswer(std::vector<Tree>& trees)
+    std::vector<int> Solver::FindAnswer(std::vector<std::vector<int>>& graph)
     {
         const int num =
-            trees.size() * 2; // NOLINT(cppcoreguidelines-narrowing-conversions,bugprone-narrowing-conversions)
+            graph.size(); // NOLINT(cppcoreguidelines-narrowing-conversions,bugprone-narrowing-conversions)
         const int start = 0;
 
 
-        std::vector<std::vector<int>> graph(num);
-        // Create trees
-        for (const auto& tree : trees)
+        // std::vector<std::vector<int>> graph(num);
+        //  Create trees
+        /* for (const auto& tree : trees)
         {
             const int a = tree.from->Pos();
             const int b = tree.to->Pos();
 
             graph[a].push_back(b);
             graph[b].push_back(a);
-        }
+        } */
         int goal = (int)(graph.size() / 2);
 
         std::vector<int> parent(num, -1);
