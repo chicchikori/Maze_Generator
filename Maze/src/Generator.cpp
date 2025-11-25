@@ -51,7 +51,7 @@ namespace Maze
         std::shuffle(trees.begin(), trees.end(), engine);
 
 
-        std::vector<std::vector<int>> res;
+        std::vector<std::vector<int>> res(sizeX * sizeY);
         for (auto& branch : trees)
         {
             if (Unite(branch.from, branch.to))
