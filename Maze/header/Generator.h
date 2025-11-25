@@ -35,7 +35,7 @@ namespace Maze
     {
     public:
         Generator(unsigned int sizeX = 10, unsigned int sizeY = 10, int seed = 0);
-        std::vector<Tree> Generate();
+        std::vector<std::vector<int>> Generate();
 
     private:
         void InitTree();

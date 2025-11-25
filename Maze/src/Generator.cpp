@@ -42,7 +42,7 @@ namespace Maze
     {
     }
 
-    std::vector<Tree> Generator::Generate()
+    std::vector<std::vector<int>> Generator::Generate()
     {
         InitTree();
 
@@ -51,12 +51,15 @@ namespace Maze
         std::shuffle(trees.begin(), trees.end(), engine);
 
 
-        std::vector<Tree> res;
+        std::vector<std::vector<int>> res;
         for (auto& branch : trees)
         {
             if (Unite(branch.from, branch.to))
             {
-                res.push_back(branch);
+                int from = branch.from->Pos();
+                int to = branch.to->Pos();
+                res[from].push_back(to);
+                res[to].push_back(from);
             }
         }
 
