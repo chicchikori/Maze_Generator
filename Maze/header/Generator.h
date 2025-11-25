@@ -37,6 +37,21 @@ namespace Maze
         Generator(unsigned int sizeX = 10, unsigned int sizeY = 10, int seed = 0);
         std::vector<std::vector<int>> Generate();
 
+        [[nodiscard]] unsigned int GetSizeX() const
+        {
+            return sizeX;
+        }
+
+        [[nodiscard]] unsigned int GetSizeY() const
+        {
+            return sizeY;
+        }
+
+        [[nodiscard]] int GetSeed() const
+        {
+            return seed;
+        }
+
     private:
         void InitTree();
 
